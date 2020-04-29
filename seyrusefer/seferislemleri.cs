@@ -14,23 +14,24 @@ namespace seyrusefer
 {
     public partial class seferislemleri : Form
     {
+        int gecmis = -1;
         int secili = -1;
         public seferislemleri()
         {
             InitializeComponent();
-            //dataGridView1.Columns.Add("sefer", "Sefer No");
-            //dataGridView1.Columns.Add("sefer", "Nereden");
-            //dataGridView1.Columns.Add("sefer", "Nereye");
-            //dataGridView1.Columns.Add("sefer", "Tarih");
-            //dataGridView1.Columns.Add("sefer", "Saat");
-            //dataGridView1.Columns.Add("sefer", "Kapasite");
-            //dataGridView1.Columns.Add("sefer", "Kaptan");
-            //dataGridView1.Columns.Add("sefer", "Plaka");
-            //dataGridView1.Columns.Add("sefer", "Bilet Fiyatı");
+            dataGridView1.Columns.Add("sefer", "Sefer No");
+            dataGridView1.Columns.Add("sefer", "Nereden");
+            dataGridView1.Columns.Add("sefer", "Nereye");
+            dataGridView1.Columns.Add("sefer", "Tarih");
+            dataGridView1.Columns.Add("sefer", "Saat");
+            dataGridView1.Columns.Add("sefer", "Kapasite");
+            dataGridView1.Columns.Add("sefer", "Kaptan");
+            dataGridView1.Columns.Add("sefer", "Plaka");
+            dataGridView1.Columns.Add("sefer", "Bilet Fiyatı");
 
         }
 
-        DataTable table = new DataTable();
+        //DataTable table = new DataTable();
         private void Formekle_Load(object sender, EventArgs e)
         {
             comboBox1.Items.Add("İstanbul");
@@ -57,24 +58,25 @@ namespace seyrusefer
             comboBox3.Items.Add("22.20");
             comboBox3.Items.Add("23.20");
 
-            table.Columns.Add("Sefer No",typeof(int));
-            table.Columns.Add( "Nereden",typeof(string));
-            table.Columns.Add( "Nereye", typeof(string));
-            table.Columns.Add( "Tarih", typeof(string));
-            table.Columns.Add( "Saat", typeof(string));
-            table.Columns.Add( "Kapasite", typeof(int));
-            table.Columns.Add( "Kaptan", typeof(string));
-            table.Columns.Add( "Plaka", typeof(string));
-            table.Columns.Add( "Bilet Fiyatı", typeof(int));
+            //table.Columns.Add("Sefer No",typeof(int));
+            //table.Columns.Add( "Nereden",typeof(string));
+            //table.Columns.Add( "Nereye", typeof(string));
+            //table.Columns.Add( "Tarih", typeof(string));
+            //table.Columns.Add( "Saat", typeof(string));
+            //table.Columns.Add( "Kapasite", typeof(int));
+            //table.Columns.Add( "Kaptan", typeof(string));
+            ////table.Columns.Add( "Plaka", typeof(string));
+            ////table.Columns.Add( "Bilet Fiyatı", typeof(int));
 
-            dataGridView1.DataSource = table;
+            //dataGridView1.DataSource = table;
 
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        { 
+            
             if (textBox1.Text.Trim() != "" && comboBox1.Text.Trim() != "" && comboBox2.Text.Trim() != "" && comboBox3.Text.Trim() != "" && dateTimePicker1.Text.Trim() != "" && textBox6.Text.Trim() != "" && textBox7.Text.Trim() != "" && textBox8.Text.Trim() != "" && textBox9.Text.Trim() != "")
             {
                 dataGridView1.Rows.Add(1);
@@ -202,7 +204,7 @@ namespace seyrusefer
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            gecmis = 1;
             
             string[] lines = File.ReadAllLines(@"C:\Users\simge\OneDrive\Masaüstü\proje.txt");
             string[] values;
@@ -217,7 +219,7 @@ namespace seyrusefer
                 {
                     row[j] = values[j].Trim();
                 }
-                table.Rows.Add(row);
+                dataGridView1.Rows.Add(row);
             }
 
 
@@ -229,7 +231,16 @@ namespace seyrusefer
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if(gecmis == 1)
+            { 
+            int kayitsayisi;
+            kayitsayisi = (dataGridView1.RowCount)-1;
+            MessageBox.Show(kayitsayisi.ToString());
+            }
+            else MessageBox.Show("Önce Geçmiş Sefer Listeleyiniz!");
 
         }
+
+
     }
 }
