@@ -75,8 +75,10 @@ namespace seyrusefer
 
 
         private void button1_Click(object sender, EventArgs e)
-        { 
-            
+        {
+
+
+
             if (textBox1.Text.Trim() != "" && comboBox1.Text.Trim() != "" && comboBox2.Text.Trim() != "" && comboBox3.Text.Trim() != "" && dateTimePicker1.Text.Trim() != "" && textBox6.Text.Trim() != "" && textBox7.Text.Trim() != "" && textBox8.Text.Trim() != "" && textBox9.Text.Trim() != "")
             {
                 dataGridView1.Rows.Add(1);
@@ -241,6 +243,26 @@ namespace seyrusefer
 
         }
 
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string[] lines = File.ReadAllLines(@"C:\Users\simge\OneDrive\Masaüstü\proje.txt");
+            string[] values;
 
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].ToString().Split(',');
+                string[] row = new string[values.Length];
+
+                for (int j = 0; j <= 0; j++)
+                {
+                    row[j] = values[j].Trim();
+                    int s = Convert.ToInt16(row[j]);
+                    s = s + 1;
+                    textBox1.Text = Convert.ToString(s);
+                }
+
+            }
+        }
     }
 }
